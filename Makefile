@@ -15,6 +15,10 @@ airos.iso: build/airos.bin
 build/airos.bin: $(OBJ)
 	ld -m elf_i386 -T linker.ld -o $@ $(OBJ)
 
+build/%.o: src/%.c
+	mkdir -p $(dir $@)
+	cc -Iinclude -m32 -ffreestanding -fno-stack-protector -c $< -o $@
+
 build/%.o: src/%.asm
 	mkdir -p $(dir $@)
 	nasm -f elf32 $< -o $@

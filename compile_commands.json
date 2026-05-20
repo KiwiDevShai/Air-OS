@@ -1,0 +1,18 @@
+[
+  {
+    "file": "src/kernel.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-Iinclude",
+      "-m32",
+      "-ffreestanding",
+      "-fno-stack-protector",
+      "-c",
+      "src/kernel.c",
+      "-o",
+      "build/kernel.o"
+    ],
+    "directory": "/home/kiwi/Projects/os/airos",
+    "output": "build/kernel.o"
+  }
+]

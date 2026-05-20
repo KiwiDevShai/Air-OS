@@ -1,4 +1,28 @@
-# Air OS
+# Air-OS
 
-## IT BOOTS WITH GRUB
-this is the first time i ever got an os to work with grub
+Air-OS is a hobby operating system.
+
+## How to Use
+
+### Dependencies
+- cc
+- ld
+- nasm
+- grub-mkrescue
+- qemu-system-i386
+- make
+
+### Run
+```bash
+make run
+```
+
+### Build
+```bash
+make
+```
+
+### Clean
+```bash
+make clean
+```
