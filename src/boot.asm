@@ -197,7 +197,7 @@ gdt_end:
 
 gdt_descriptor:
     dw gdt_end - gdt_start - 1
-    dd gdt_start
+    dq gdt_start
 
 ; Idk what to write here so its the bs section lol
 section .bss
