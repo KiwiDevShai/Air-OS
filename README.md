@@ -9,7 +9,7 @@ Air-OS is a hobby operating system.
 - ld
 - nasm
 - grub-mkrescue
-- qemu-system-i386
+- qemu-system-x86_64
 - make
 
 ### Run

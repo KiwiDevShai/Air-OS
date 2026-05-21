@@ -13,18 +13,18 @@ airos.iso: build/airos.bin
 	grub-mkrescue -o airos.iso iso_setup
 
 build/airos.bin: $(OBJ)
-	ld -m elf_i386 -T linker.ld -o $@ $(OBJ)
+	ld -m elf_x86_64 -T linker.ld -o $@ $(OBJ)
 
 build/%.o: src/%.c
 	mkdir -p $(dir $@)
-	cc -Iinclude -m32 -ffreestanding -fno-stack-protector -c $< -o $@
+	cc -Iinclude -m64 -ffreestanding -fno-stack-protector -mno-red-zone -c $< -o $@
 
 build/%.o: src/%.asm
 	mkdir -p $(dir $@)
-	nasm -f elf32 $< -o $@
+	nasm -f elf64 $< -o $@
 
 run: airos.iso
-	qemu-system-i386 -cdrom airos.iso
+	qemu-system-x86_64 -cdrom airos.iso
 
 clean:
 	rm -rf build/* airos.iso iso_setup/boot/airos.bin
