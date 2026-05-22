@@ -17,7 +17,7 @@ build/airos.bin: $(OBJ)
 
 build/%.o: src/%.c
 	mkdir -p $(dir $@)
-	cc -Iinclude -m64 -ffreestanding -fno-stack-protector -mno-red-zone -c $< -o $@
+	cc -Iinclude -Iinclude/vendor -m64 -ffreestanding -fno-stack-protector -mno-red-zone -c $< -o $@
 
 build/%.o: src/%.asm
 	mkdir -p $(dir $@)
