@@ -16,5 +16,95 @@
     ],
     "directory": "/home/kiwi/Projects/os/airos",
     "output": "build/kernel.o"
+  },
+  {
+    "file": "src/memory/vmm.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-Iinclude",
+      "-Iinclude/vendor",
+      "-m64",
+      "-ffreestanding",
+      "-fno-stack-protector",
+      "-mno-red-zone",
+      "-c",
+      "src/memory/vmm.c",
+      "-o",
+      "build/memory/vmm.o"
+    ],
+    "directory": "/home/kiwi/Projects/os/airos",
+    "output": "build/memory/vmm.o"
+  },
+  {
+    "file": "src/memory/pmm.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-Iinclude",
+      "-Iinclude/vendor",
+      "-m64",
+      "-ffreestanding",
+      "-fno-stack-protector",
+      "-mno-red-zone",
+      "-c",
+      "src/memory/pmm.c",
+      "-o",
+      "build/memory/pmm.o"
+    ],
+    "directory": "/home/kiwi/Projects/os/airos",
+    "output": "build/memory/pmm.o"
+  },
+  {
+    "file": "src/printf/printf.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-Iinclude",
+      "-Iinclude/vendor",
+      "-m64",
+      "-ffreestanding",
+      "-fno-stack-protector",
+      "-mno-red-zone",
+      "-c",
+      "src/printf/printf.c",
+      "-o",
+      "build/printf/printf.o"
+    ],
+    "directory": "/home/kiwi/Projects/os/airos",
+    "output": "build/printf/printf.o"
+  },
+  {
+    "file": "src/printf/putchar.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-Iinclude",
+      "-Iinclude/vendor",
+      "-m64",
+      "-ffreestanding",
+      "-fno-stack-protector",
+      "-mno-red-zone",
+      "-c",
+      "src/printf/putchar.c",
+      "-o",
+      "build/printf/putchar.o"
+    ],
+    "directory": "/home/kiwi/Projects/os/airos",
+    "output": "build/printf/putchar.o"
+  },
+  {
+    "file": "src/multiboot_parse.c",
+    "arguments": [
+      "/usr/bin/cc",
+      "-Iinclude",
+      "-Iinclude/vendor",
+      "-m64",
+      "-ffreestanding",
+      "-fno-stack-protector",
+      "-mno-red-zone",
+      "-c",
+      "src/multiboot_parse.c",
+      "-o",
+      "build/multiboot_parse.o"
+    ],
+    "directory": "/home/kiwi/Projects/os/airos",
+    "output": "build/multiboot_parse.o"
   }
 ]
