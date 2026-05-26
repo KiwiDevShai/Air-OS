@@ -1,19 +1,9 @@
 #include <stdint.h>
 #include "io.h"
+#include "panic.h"
 #include "printf/printf.h"
 #include "common.h"
 #include "multiboot_parse.h"
-
-__attribute__((noreturn))
-void hcf(void) {
-    asm volatile ("cli" ::: "memory");
-
-    for (;;) {
-        asm volatile ("hlt");
-    }
-
-    __builtin_unreachable();
-}
 
 void kmain(uintptr_t multiboot_info_ptr) {
 	// first disable cursor to save my eyes!
@@ -25,11 +15,9 @@ void kmain(uintptr_t multiboot_info_ptr) {
     struct multiboot2_info *mbi = (struct multiboot2_info *)multiboot_info_ptr;
     struct multiboot_tag_mmap *mmap = multiboot2_get_mmap(mbi);
     if (mmap == NULL) {
-        printf_(" ERROR: NO MMAP!");
-        hcf();
-        // once we have panic() we'll use that
+        PANIC("Failed getting memory map!");
     }
-    printf_(" Success!");
+    printf_(" Success!\n");
     // DEATH
     hcf();
 }

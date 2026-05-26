@@ -17,11 +17,14 @@ build/airos.bin: $(OBJ)
 
 build/%.o: src/%.c
 	mkdir -p $(dir $@)
-	cc -Iinclude -Iinclude/vendor -m64 -ffreestanding -fno-stack-protector -mno-red-zone -c $< -o $@
+	cc -Iinclude -Iinclude/vendor -m64 -g -O0 -ffreestanding -fno-stack-protector -mno-red-zone -c $< -o $@
 
 build/%.o: src/%.asm
 	mkdir -p $(dir $@)
 	nasm -f elf64 $< -o $@
+
+debug: airos.iso
+	qemu-system-x86_64 -cdrom airos.iso -s -S
 
 run: airos.iso
 	qemu-system-x86_64 -cdrom airos.iso
