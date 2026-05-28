@@ -18,6 +18,7 @@ void kmain(uintptr_t multiboot_info_ptr) {
         PANIC("Failed getting memory map!");
     }
     printf_(" Success!\n");
+    printf_("kmain() pointer test: %p", kmain);
     // DEATH
     hcf();
 }

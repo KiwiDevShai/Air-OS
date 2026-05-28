@@ -15,7 +15,7 @@ void panic_(const char *file, const char *func, int line, const char *fmt, ...) 
     vsnprintf_(buf, sizeof(buf), fmt, pargs);
 
     int len = strlen(buf);
-    printf_((const char*)buf);
+    printf_("%s", (const char*)buf); 
     if (len == 0 || buf[len - 1] != '\n') {
         printf_("\n");
     }

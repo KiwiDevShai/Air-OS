@@ -34,7 +34,7 @@ header_end:
 
 ; Code
 [BITS 32]
-section .text
+section .boot
 global _start
 extern kmain
 
@@ -99,12 +99,16 @@ paging_setup:
     or eax, PRESENT | WRITABLE
     mov [pml4_table], eax
     mov dword [pml4_table + 4], 0
+    mov [pml4_table + 4088], eax
+    mov dword [pml4_table + 4092], 0
 
     ; set pdpt
     mov eax, pd_table
     or eax, PRESENT | WRITABLE
     mov [pdpt_table], eax
     mov dword [pdpt_table + 4], 0
+    mov [pdpt_table + 4080], eax
+    mov dword [pdpt_table + 4084], 0
 
     ; fill pd table
     mov ecx, 0 ; loop counter
@@ -166,11 +170,15 @@ _start:
 
     lgdt [gdt_descriptor]
     call enable_paging
-    jmp 0x08:long_mode_start
+    jmp 0x08:trampoline
 .hang:
     hlt
     jmp .hang
 [BITS 64]
+trampoline:
+    mov rax, long_mode_start
+    jmp rax
+section .text
 long_mode_start:
     ; we have liftoff
     mov ax, 0x10
@@ -186,7 +194,7 @@ long_mode_start:
     jmp .hang
 
 ; GDT
-section .rodata
+section .boot
 align 8
 
 gdt_start:
@@ -199,13 +207,13 @@ gdt_descriptor:
     dw gdt_end - gdt_start - 1
     dq gdt_start
 
-; Idk what to write here so its the bs section lol
-section .bss
+; Bootables
+section .boottables nobits
 
 ; Stack
 align 16
 stack_bottom:
-    resb 16384 ; 16kb! WOW! so much kb!
+    resb 16384 ; 16kb
 stack_top:
 
 ; Paging stuff
